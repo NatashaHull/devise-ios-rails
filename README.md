@@ -39,6 +39,16 @@ end
 ```
 Don't forget about `rake db:migrate`.
 
+To populate the authentication token when creating users, add `acts_as_token_authenticatable` to the User's model:
+
+```ruby
+class User < ActiveRecord::Base
+  acts_as_token_authenticatable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+end
+```
+
 -To protect actions to only registered users, add `acts_as_token_authentication_handler_for User` in your controller:
 
 ```ruby
